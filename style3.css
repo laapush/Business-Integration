@@ -1,0 +1,64 @@
+            main {
+                padding-top: 1rem;
+            }
+            
+            .anfrage-wrapper {
+                max-width: 51rem;
+                margin-top: 30px;
+                margin-left: 150px;
+            }
+            
+            .anfrage-form {
+                padding: 1rem;
+                display: grid;
+                grid-auto-rows: 2rem;
+                grid-row-gap: 0.4rem;
+            }
+            
+            input [type="checkbox"] {
+                vertical-align: middle
+            }
+            
+            .anfrage-form label {
+                font-weight: bold;
+            }
+            
+            .anfrage-form label,
+            .anfrage-form input {
+                display: block;
+                width: 50%;
+            }
+            
+            .notify,
+            .lowest {
+                font-size: smaller;
+                font-weight: lighter;
+            }
+            
+            .button {
+                width: 50%;
+            }
+            
+            .anfrage-form input:focus {
+                outline: none;
+                background: white;
+                border-color: #2189df;
+            }
+            
+            .anfrage-form button[type="submit"] {
+                display: block;
+                background-color: grey;
+                color: white;
+                width: 50%;
+            }
+            
+            .anfrage-form input.invalid,
+            .anfrage-form select.invalid,
+            .anfrage-form.needs-validation :invalid {
+                border: 1px solid red !important;
+            }
+            
+            input::placeholder {
+                text-align: right;
+                margin-right: 10px;
+            }
