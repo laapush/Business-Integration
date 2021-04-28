@@ -4,6 +4,7 @@ session_start();
 
 if (!isset($_SESSION['vname'])) {
     header("Location: login.php");
+
 }
 
 ?>
@@ -47,16 +48,16 @@ if (!isset($_SESSION['vname'])) {
 
     <main class="anfrage">
   <div class="anfrage-wrapper">
-    <form action="" class="anfrage-form">
+    <form action="anfragen.php" method="post" class="anfrage-form">
 
-      <label for="betrag">Nettokreditbetrag:</label>
-      <input type="number" id="betrag" placeholder="Euro" required>       </input><br>
+      <label for="amount">Nettokreditbetrag:</label>
+      <input type="number" id="amount" name ="amount" placeholder="Euro" required>       </input><br>
 
-      <label for="laufzeit">Kreditlaufzeit:</label>
-      <input type="number" id="laufzeit" placeholder="Monate" min="1" max="36" maxlength="2" required>    </input><br>
+      <label for="term">Kreditlaufzeit:</label>
+      <input type="number" id="term" name="term" placeholder="Monate" min="1" max="36" maxlength="2" required>    </input><br>
 
       <label for="ssn">SSN:   </label>
-        <select class="anfrage-form2" required>
+        <select class="anfrage-form2" name="ssn" required>
         <option value="testA">A</option>
         <option value="testB">B</option>
         <option value="testC">C</option>
@@ -80,7 +81,7 @@ if (!isset($_SESSION['vname'])) {
     </div>
     <div>   <label style="font-weight:normal; font-size:small">E-Mail Benachrichtigung<input type="checkbox" id="notify" name="notify"></label>
     </div>
-      <button type="submit" class="button">Absenden</button>
+      <button type="submit" onclick="" class="button">Absenden</button>
     </form>
   </div>
 </main>
