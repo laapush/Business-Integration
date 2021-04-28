@@ -7,7 +7,7 @@ error_reporting(0);
 session_start();
 
 if (isset($_SESSION['vname'])) {
-    header("Location: index.php");
+    header("Location: login.php");
 }
 
 if (isset($_POST['submit'])) {
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
 			<div class="input-group">
 				<button name="submit" class="btn">Registrieren</button>
 			</div>
-			<p class="login-register-text">Bereits registriert?<a href="index.php"> Jetzt anmelden</a>.</p>
+			<p class="login-register-text">Bereits registriert?<a href="login.php"> Jetzt anmelden</a>.</p>
 		</form>
 	</div>
 </body>

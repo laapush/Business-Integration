@@ -50,20 +50,28 @@ if (!isset($_SESSION['vname'])) {
     <form action="" class="anfrage-form">
 
       <label for="betrag">Nettokreditbetrag:</label>
-      <input type="text" id="betrag" placeholder="Euro" required>       </input><br>
+      <input type="number" id="betrag" placeholder="Euro" required>       </input><br>
 
       <label for="laufzeit">Kreditlaufzeit:</label>
-      <input type="text" id="laufzeit" placeholder="Jahre" required>    </input><br>
+      <input type="number" id="laufzeit" placeholder="Monate" min="1" max="36" maxlength="2" required>    </input><br>
 
-      <label for="vwzk">Verwendungszweck:   </label>
+      <label for="ssn">SSN:   </label>
         <select class="anfrage-form2" required>
-          <option>Freie Verwendung</option>
-          <option>Gebrauchtfahrzeug</option>
-          <option>Neufahrzeug</option>
-          <option>Umschuldung/Kredit ablösen</option>
-          <option>Ausgleich Dispo</option>
-          <option>Einrichtung/Möbel</option>
-          <option>Modernisierung/Baufinanzierung</option>
+        <option value="testA">A</option>
+        <option value="testB">B</option>
+        <option value="testC">C</option>
+        <option value="testD">D</option>
+        <option value="testE">E</option>
+        <option value="testF">F</option>
+        <option value="testG">G</option>
+        <option value="testH">H</option>
+        <option value="testI">I</option>
+        <option value="testJ">J</option>
+        <option value="testK">K</option>
+        <option value="testL">L</option>
+        <option value="testN">N</option>
+        <option value="testO">O</option>
+        <option value="testP">P</option>
         </select>
 
       <label>Optionen:</label>
