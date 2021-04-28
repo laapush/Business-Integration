@@ -55,11 +55,22 @@ if (!isset($_SESSION['vname'])) {
       <label for="laufzeit">Kreditlaufzeit:</label>
       <input type="text" id="laufzeit" placeholder="Jahre" required>    </input><br>
 
-      <label for="options">Optionen:</label>
+      <label for="vwzk">Verwendungszweck:   </label>
+        <select class="anfrage-form2" required>
+          <option>Freie Verwendung</option>
+          <option>Gebrauchtfahrzeug</option>
+          <option>Neufahrzeug</option>
+          <option>Umschuldung/Kredit ablösen</option>
+          <option>Ausgleich Dispo</option>
+          <option>Einrichtung/Möbel</option>
+          <option>Modernisierung/Baufinanzierung</option>
+        </select>
+
+      <label>Optionen:</label>
       <div>
-      <label class="lowest" style="font-weight:normal">Nur die niedrigste Rate erhalten<input type="checkbox" id="lowest" name="lowest"></label>
+      <label style="font-weight:normal; font-size:small">Nur die niedrigste Rate erhalten<input type="checkbox" id="lowest" name="lowest"></label>
     </div>
-    <div>   <label class="notify" style="font-weight:normal">E-Mail Benachrichtigung<input type="checkbox" id="notify" name="notify"></label>
+    <div>   <label style="font-weight:normal; font-size:small">E-Mail Benachrichtigung<input type="checkbox" id="notify" name="notify"></label>
     </div>
       <button type="submit" class="button">Absenden</button>
     </form>

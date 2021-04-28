@@ -15,31 +15,35 @@
                 grid-row-gap: 0.4rem;
             }
             
-            input [type="checkbox"] {
+            .anfrage-form2 {
+                width: 50%;
+            }
+            
+            .lowest,
+            .notify {
                 vertical-align: middle
             }
             
             .anfrage-form label {
                 font-weight: bold;
+                display: block;
             }
             
             .anfrage-form label,
-            .anfrage-form input {
+            .anfrage-form input,
+            .anfrage-form option {
                 display: block;
                 width: 50%;
-            }
-            
-            .notify,
-            .lowest {
-                font-size: smaller;
-                font-weight: lighter;
             }
             
             .button {
                 width: 50%;
             }
             
-            .anfrage-form input:focus {
+            .anfrage-form input:focus,
+            .anfrage-form select:focus,
+            .anfrage-form2 select:focus,
+            .anfrage-form2 option:focus {
                 outline: none;
                 background: white;
                 border-color: #2189df;
@@ -47,6 +51,7 @@
             
             .anfrage-form button[type="submit"] {
                 display: block;
+                cursor: pointer;
                 background-color: grey;
                 color: white;
                 width: 50%;
