@@ -1,8 +1,6 @@
 <?php 
 session_start();
 
-
-
 if (!isset($_SESSION['vname'])) {
     header("Location: login.php");
 
@@ -18,11 +16,7 @@ $json = file_get_contents($abfragekredit);
 
 $data = json_decode($json,true);
 
-$amount2 = $data['creditrateresponse'];
-
-print_r($amount2);
-
-exit;
+$abfrage = $data['creditrateresponse'];
 
 ?>
 
@@ -63,10 +57,15 @@ exit;
    <div class=title>
     <h1>Meine Kreditanfragen</h1>
     </div>
-
     <main class="anfrage">
   <div class="anfrage-wrapper">
-   
+  <form action="" class="anfrage-form">
+
+<label for="score">Ihr Score-Wert lautet:
+  <?php
+    print_r($abfrage);
+    exit;
+  ?></label>
   </div>
 </main>
 </div>
