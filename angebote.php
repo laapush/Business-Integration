@@ -6,6 +6,18 @@ if (!isset($_SESSION['vname'])) {
     header("Location: login.php");
 }
 
+$amount = $_POST["amount"];
+$term = $_POST["term"];
+$ssn = $_POST["ssn"];
+
+$abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term . "&arg2=" . $ssn;
+
+$json = file_get_contents($abfragekredit);
+
+$data = json_decode($json,true);
+
+$abfrage = $data['creditrateresponse'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +28,13 @@ if (!isset($_SESSION['vname'])) {
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="style3.css">
    <script src="https://kit.fontawesome.com/13c7fa4ddd.js" crossorigin="anonymous"></script>
+    <style>
+
+    .td2{
+        padding-left:25px;
+        padding-bottom:5px;
+    }
+    </style>
 
     <title>Loan Broker - Angebote</title>
 </head>
@@ -47,7 +66,35 @@ if (!isset($_SESSION['vname'])) {
 
     <main class="anfrage">
   <div class="anfrage-wrapper">
-
+  <form action="" class="anfrage-form">
+  <article name="angebote">
+        <h1>Angebot vom: 29.04.21</h1>
+        <section>
+        <div>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td>Nettokreditbetrag: </td>
+                <td class="td2"> <?php
+                print_r($amount);
+            ?> Euro</label></td>
+            </tr>
+            <tr>
+            <td>Kreditlaufzeit: </td>
+                <td class="td2"><?php
+                print_r($term);
+            ?> Monate</label></td>
+            </tr>
+            <tr>
+            <td>Zinssatz: </td>
+                <td class="td2">  <?php
+                print_r(round($abfrage,2));
+            ?> Prozent</label></td>
+            </tr>
+    </table>
+        </section>
+    </article>
   </div>
 </main>
 </div>

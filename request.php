@@ -48,13 +48,13 @@ if (!isset($_SESSION['vname'])) {
 
     <main class="anfrage">
   <div class="anfrage-wrapper">
-    <form action="anfragen.php"method="post" class="anfrage-form">
+    <form action="angebote.php"method="post" class="anfrage-form">
 
       <label for="amount">Nettokreditbetrag:</label>
-      <input type="number" id="amount" name ="amount" placeholder="Euro" required>       </input><br>
+      <input type="number" id="amount" name ="amount"min="100" max="100000" <!--pattern="[100-100000]-->"maxlength="6"  placeholder="Euro" required>       </input><br>
 
       <label for="term">Kreditlaufzeit:</label>
-      <input type="number" id="term" name="term" placeholder="Monate" min="1" max="36" maxlength="2" required>    </input><br>
+      <input type="number" id="term" name="term" placeholder="Monate" min="1" max="36" <!--pattern="[1-36]{2} -->"maxlength="2" required>    </input><br>
 
       <label for="ssn">SSN:   </label>
         <select class="anfrage-form2" name="ssn" required>
@@ -88,11 +88,11 @@ if (!isset($_SESSION['vname'])) {
 </div>
 <script>
 function myFunction() {
-  var t=setTimeout("alertMsg()",2000);
+  var t =setTimeout("alertMsg()",2000);
 }
 function alertMsg()
 {
-  alert("Die Kreditanfrage wurde verschickt.");
+    alert("Die Kreditanfrage wurde verschickt.");
 }
 </script>
 </body>
