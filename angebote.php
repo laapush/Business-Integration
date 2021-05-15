@@ -19,31 +19,7 @@ $query->bind_param($ssn);
 $query->execute(); // actually perform the query
 $result = $query->get_result(); // retrieve the result so it can be used inside PHP
 $r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
-$ssn = $r['ssn']; // ssn 
-
-
-/*$cssn = str_split($bssn, 3);
-$ssn = strrev(ucfirst(strrev(strval($str))));
-
-$ssn = mysqli_query("SELECT ssn FROM user WHERE vname = '$assn'", $conn);
-$result = mysql_fetch_array($ssn);
-
-$ssn = mysqli_result(mysqli_query("SELECT ssn FROM user WHERE vname = '$assn'", $conn));
-
-$price = mysql_query("SELECT price FROM products WHERE product = '$product'");
-
-$bssn = "SELECT ssn FROM user WHERE vname = '$assn'";
-$result = mysqli_query($conn, $bssn);
-$ssn = mysqli_fetch_array($result);*/
-
-/*
-function uclast($str) {
-    return strrev(ucfirst(strrev($str)));
-}
-$test = mysqli_query($conn, "SELECT ssn FROM business_integration_db WHERE vname ={$_SESSION['vname']}");
-$assn = mysqli_fetch_assoc($test);
-$ssn = $assn['ssn'];
-$ssn = mysqli_query($conn, "SELECT ssn FROM business_integration_db WHERE vname ={$_SESSION['vname']}");*/
+$ssn = $r['ssn']; // ssn definieren
 
 $abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term . "&arg2=" .$ssn;
 
