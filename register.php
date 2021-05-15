@@ -13,21 +13,23 @@ if (isset($_SESSION['vname'])) {
 if (isset($_POST['submit'])) {
 	$vname = $_POST['vname'];
 	$nname = $_POST['nname'];
+	$ssn = $_POST['ssn'];
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 	$cpassword = md5($_POST['cpassword']);
 
 	if ($password == $cpassword) {
-		$sql = "SELECT * FROM users WHERE email='$email'";
+		$sql = "SELECT * FROM user WHERE email='$email'";
 		$result = mysqli_query($conn, $sql);
 		if (!$result->num_rows > 0) {
-			$sql = "INSERT INTO users (vname, nname, email, password)
-					VALUES ('$vname','$nname', '$email', '$password')";
+			$sql = "INSERT INTO user (vname, nname, ssn, email, password)
+					VALUES ('$vname','$nname', '$ssn', '$email', '$password')";
 			$result = mysqli_query($conn, $sql);
 			if ($result) {
 				echo "<script>alert('Registrierung wurde abgeschlossen.')</script>";
 				$vname = "";
 				$nname = "";
+				$ssn = "";
 				$email = "";
 				$_POST['password'] = "";
 				$_POST['cpassword'] = "";
@@ -67,6 +69,10 @@ if (isset($_POST['submit'])) {
 			</div>
 			<div class="input-group">
 				<input type="text" placeholder="Nachname" name="nname" value="<?php echo $nname; ?>" required>
+			</div>
+			<div class="input-group">
+				<input type="ssn" placeholder="SSN: " name="ssn" value="<?php echo $ssn; ?>" required>
+				
 			</div>
 			<div class="input-group">
 				<input type="email" placeholder="E-Mail-Adresse" name="email" value="<?php echo $email; ?>" required>

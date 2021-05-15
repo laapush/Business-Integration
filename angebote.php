@@ -1,6 +1,10 @@
 <?php 
 
+include 'config.php';
+
 session_start();
+
+error_reporting(0);
 
 if (!isset($_SESSION['vname'])) {
     header("Location: login.php");
@@ -8,7 +12,23 @@ if (!isset($_SESSION['vname'])) {
 
 $amount = $_POST["amount"];
 $term = $_POST["term"];
-$ssn = $_POST["ssn"];
+$assn = $_SESSION['vname'];
+
+
+$ssn = mysqli_query("SELECT ssn FROM user WHERE vname = '$assn'", $conn);
+
+
+/*$cssn = str_split($bssn, 3);
+$ssn = strrev(ucfirst(strrev(strval($str))));*/
+
+/*
+function uclast($str) {
+    return strrev(ucfirst(strrev($str)));
+}
+$test = mysqli_query($conn, "SELECT ssn FROM business_integration_db WHERE vname ={$_SESSION['vname']}");
+$assn = mysqli_fetch_assoc($test);
+$ssn = $assn['ssn'];
+$ssn = mysqli_query($conn, "SELECT ssn FROM business_integration_db WHERE vname ={$_SESSION['vname']}");*/
 
 $abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term . "&arg2=" . $ssn;
 
@@ -91,6 +111,12 @@ $abfrage = $data['creditrateresponse'];
                 <td class="td2">  <?php
                 print_r(round($abfrage,2));
             ?> Prozent</label></td>
+            </tr>
+            <tr>
+            <td>SSN: </td>
+                <td class="td2">  <?php
+               echo($ssn);
+            ?></label></td>
             </tr>
     </table>
         </section>

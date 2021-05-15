@@ -56,26 +56,6 @@ if (!isset($_SESSION['vname'])) {
 
         <label for="term">Kreditlaufzeit:</label>
         <input type="number" id="term" name="term" placeholder="Monate" min="1" max="36" <!--pattern="[1-36]{2} -->"maxlength="2" required>    </input><br>
-
-        <label for="ssn">SSN:   </label>
-          <select class="anfrage-form2" name="ssn" required>
-          <option value="testA">A</option>
-          <option value="testB">B</option>
-          <option value="testC">C</option>
-          <option value="testD">D</option>
-          <option value="testE">E</option>
-          <option value="testF">F</option>
-          <option value="testG">G</option>
-          <option value="testH">H</option>
-          <option value="testI">I</option>
-          <option value="testJ">J</option>
-          <option value="testK">K</option>
-          <option value="testL">L</option>
-          <option value="testN">N</option>
-          <option value="testO">O</option>
-          <option value="testP">P</option>
-          </select>
-
         <label>Optionen:</label>
          <div>
           <label style="font-weight:normal; font-size:small">Nur die niedrigste Rate erhalten<input type="checkbox" id="lowest" name="lowest"></label>
