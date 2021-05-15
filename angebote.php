@@ -132,8 +132,8 @@ $aktuelles_datum = date("d.m.Y");
             <!--
             <tr>
             <td>SSN: </td>
-                <td class="td2">  <?php
-               echo $ssn;
+                <td class="td2">  <?php/*
+               echo $ssn;*/
             ?></label></td>
             </tr>-->
     </table>
