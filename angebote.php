@@ -12,14 +12,29 @@ if (!isset($_SESSION['vname'])) {
 
 $amount = $_POST["amount"];
 $term = $_POST["term"];
-$assn = $_SESSION['vname'];
+$assn = $_SESSION["vname"];
 
-
-$ssn = mysqli_query("SELECT ssn FROM user WHERE vname = '$assn'", $conn);
+$query = $conn->prepare("SELECT ssn FROM user WHERE vname = '$assn'"); // prepate a query
+$query->bind_param($ssn);
+$query->execute(); // actually perform the query
+$result = $query->get_result(); // retrieve the result so it can be used inside PHP
+$r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+$ssn = $r['ssn']; // ssn 
 
 
 /*$cssn = str_split($bssn, 3);
-$ssn = strrev(ucfirst(strrev(strval($str))));*/
+$ssn = strrev(ucfirst(strrev(strval($str))));
+
+$ssn = mysqli_query("SELECT ssn FROM user WHERE vname = '$assn'", $conn);
+$result = mysql_fetch_array($ssn);
+
+$ssn = mysqli_result(mysqli_query("SELECT ssn FROM user WHERE vname = '$assn'", $conn));
+
+$price = mysql_query("SELECT price FROM products WHERE product = '$product'");
+
+$bssn = "SELECT ssn FROM user WHERE vname = '$assn'";
+$result = mysqli_query($conn, $bssn);
+$ssn = mysqli_fetch_array($result);*/
 
 /*
 function uclast($str) {
@@ -30,13 +45,15 @@ $assn = mysqli_fetch_assoc($test);
 $ssn = $assn['ssn'];
 $ssn = mysqli_query($conn, "SELECT ssn FROM business_integration_db WHERE vname ={$_SESSION['vname']}");*/
 
-$abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term . "&arg2=" . $ssn;
+$abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term . "&arg2=" .$ssn;
 
 $json = file_get_contents($abfragekredit);
 
 $data = json_decode($json,true);
 
 $abfrage = $data['creditrateresponse'];
+
+$aktuelles_datum = date("d.m.Y"); 
 
 ?>
 <!DOCTYPE html>
@@ -88,7 +105,7 @@ $abfrage = $data['creditrateresponse'];
   <div class="anfrage-wrapper">
   <form action="" class="anfrage-form">
   <article name="angebote">
-        <h1>Angebot vom: 29.04.21</h1>
+        <h1>Angebot vom:&nbsp; <?php echo $aktuelles_datum?> </h1>
         <section>
         <div>
         <br>
@@ -96,7 +113,7 @@ $abfrage = $data['creditrateresponse'];
         <table>
             <tr>
                 <td>Nettokreditbetrag: </td>
-                <td class="td2"> <?php
+                <td class="td2"><?php
                 print_r($amount);
             ?> Euro</label></td>
             </tr>
@@ -112,12 +129,13 @@ $abfrage = $data['creditrateresponse'];
                 print_r(round($abfrage,2));
             ?> Prozent</label></td>
             </tr>
+            <!--
             <tr>
             <td>SSN: </td>
                 <td class="td2">  <?php
-               echo($ssn);
+               echo $ssn;
             ?></label></td>
-            </tr>
+            </tr>-->
     </table>
         </section>
     </article>
