@@ -1,0 +1,28 @@
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    width: 600px;
+}
+
+.content-table thead tr {
+    background: rgba(110, 153, 170, 0.5);
+    color: black;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid silver;
+    background: rgba(255, 255, 255, 0.678);
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid rgba(110, 153, 170, 0.5);
+}

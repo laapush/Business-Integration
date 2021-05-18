@@ -49,7 +49,7 @@ if (!isset($_SESSION['vname'])) {
 
     <main class="anfrage">
      <div class="anfrage-wrapper">
-       <form action="angebote.php"method="post" class="anfrage-form">
+       <form action="angebot_request.php"method="post" class="anfrage-form">
 
         <label for="amount">Nettokreditbetrag:</label>
         <input type="number" id="amount" name ="amount"min="100" max="100000" <!--pattern="[100-100000]-->"maxlength="6"  placeholder="Euro" required>       </input><br>
@@ -62,19 +62,12 @@ if (!isset($_SESSION['vname'])) {
          </div>
          <div><label style="font-weight:normal; font-size:small">E-Mail Benachrichtigung<input type="checkbox" id="notify" name="notify"></label>
         </div>
-         <button type="submit" onclick="myFunction()" class="button">Absenden</button>
+         <button type="submit"  class="button">Absenden</button>
     </form>
   </div>
   </main>
 </div>
 <script>
-  function myFunction() {
-    var t =setTimeout("alertMsg()",2000);
-  }
-  function alertMsg()
-  {
-      alert("Die Kreditanfrage wurde verschickt.");
-  }
 </script>
 </body>
 </html>

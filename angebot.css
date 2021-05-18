@@ -1,0 +1,11 @@
+.box {
+    background: rgba(110, 153, 170, 0.5);
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    text-align: center;
+    border: 3px solid white;
+    font-family: 'Poppins', sans-serif;
+    font-size: x-large;
+    padding: 50px;
+}

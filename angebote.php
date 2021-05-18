@@ -10,27 +10,6 @@ if (!isset($_SESSION['vname'])) {
     header("Location: login.php");
 }
 
-$amount = $_POST["amount"];
-$term = $_POST["term"];
-$assn = $_SESSION["vname"];
-
-$query = $conn->prepare("SELECT ssn FROM user WHERE vname = '$assn'"); // prepate a query
-$query->bind_param($ssn);
-$query->execute(); // actually perform the query
-$result = $query->get_result(); // retrieve the result so it can be used inside PHP
-$r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
-$ssn = $r['ssn']; // ssn definieren
-
-$abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term . "&arg2=" .$ssn;
-
-$json = file_get_contents($abfragekredit);
-
-$data = json_decode($json,true);
-
-$abfrage = $data['creditrateresponse'];
-
-$aktuelles_datum = date("d.m.Y"); 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +17,7 @@ $aktuelles_datum = date("d.m.Y");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="table.css">
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="style3.css">
    <script src="https://kit.fontawesome.com/13c7fa4ddd.js" crossorigin="anonymous"></script>
@@ -80,41 +60,46 @@ $aktuelles_datum = date("d.m.Y");
     <main class="anfrage">
   <div class="anfrage-wrapper">
   <form action="" class="anfrage-form">
-  <article name="angebote">
-        <h1>Angebot vom:&nbsp; <?php echo $aktuelles_datum?> </h1>
-        <section>
-        <div>
-        <br>
-        <br>
-        <table>
-            <tr>
-                <td>Nettokreditbetrag: </td>
-                <td class="td2"><?php
-                print_r($amount);
-            ?> Euro</label></td>
-            </tr>
-            <tr>
-            <td>Kreditlaufzeit: </td>
-                <td class="td2"><?php
-                print_r($term);
-            ?> Monate</label></td>
-            </tr>
-            <tr>
-            <td>Zinssatz: </td>
-                <td class="td2">  <?php
-                print_r(round($abfrage,2));
-            ?> Prozent</label></td>
-            </tr>
-            <!--
-            <tr>
-            <td>SSN: </td>
-                <td class="td2">  <?php/*
-               echo $ssn;*/
-            ?></label></td>
-            </tr>-->
-    </table>
-        </section>
-    </article>
+
+  <?php 
+
+  $sqli = "SELECT * FROM request order by Datum";
+        if($resulti = mysqli_query($conn, $sqli)){
+        if(mysqli_num_rows($resulti) > 0){
+        echo "<table class='content-table'><thead>";
+            echo "<tr>";
+                echo "<th>Anfragedatum</th>";
+                echo "<th>Nettokreditbetrag<br> in Euro</th>";
+                echo "<th>Kreditlaufzeit<br> in Monaten</th>";
+                echo "<th>Zinssatz<br> in Prozent</th>";
+            echo "</tr></thead>";
+        while($row = mysqli_fetch_array($resulti)){
+            echo "<tbody><tr>";
+
+                $date = new DateTime($row['Datum']);
+
+                echo "<td>" . $date->format('d.m.y H:i:s'). "</td>";
+
+                echo "<td>" . $row['Kredithöhe'] . "</td>";
+
+                echo "<td>" . $row['Kreditlänge'] . "</td>";
+                echo "<td>" . round($row['Zinssatz'],2) . "</td>";
+            echo "</tr></tbody>";
+        }
+        echo "</table>";
+        // Free result set
+        mysqli_free_result($resulti);
+         } else{
+        echo "No records matching your query were found.";
+            }
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+        }
+ 
+        // Close connection
+        mysqli_close($conn);
+        ?>
+    </form>
   </div>
 </main>
 </div>
