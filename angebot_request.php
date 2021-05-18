@@ -29,6 +29,7 @@ $data = json_decode($json,true);
 $abfrage = $data['creditrateresponse'];
 
 $datetime = date("Y-m-d H:i:s"); 
+$dateMail = date("d.m.Y H:i"); 
 
 $helper = false;
 
@@ -38,6 +39,19 @@ $result = mysqli_query($conn, "INSERT INTO " .$sql );
 if ($result != null){
     $helper = true;
 }
+
+//header meta data
+$header = "Content-Type:text/html\r\n";
+//the subject
+$sub = "Ihre Kreditanfrage vom " .$dateMail;
+//the message
+$msg = "Guten Tag, <br><br> Sie haben ein Angebot für Ihre Anfrage in Höhe von <strong>" .$amount ." Euro</strong> für eine Kreditlaufzeit von <strong>" .$term . " Monaten</strong> erhalten.
+        <br>Der bestangebotene Zinssatz für Ihre Anfrage beträgt <strong>" . round($abfrage,2). " Prozent</strong><br><br><br>";
+//recipient email here
+$rec = "buenyamin1855@gmail.com";
+
+//send email
+mail($rec,$sub,$msg, $header);
 
 ?>
 <!DOCTYPE html>
@@ -96,7 +110,7 @@ if ($result != null){
 
             $url1 = "welcome.php";
             $url2 = "anfragen.php";
-        	echo "<div class ='box'><b>Die Kreditanfrage wurde verschickt!</b><br><br><br><br><br><a href='$url1'>Zurück zur Startseite</a><br><br><br><br><br><a href='$url2'>Zu Meine Anfragen</a></div>"; 
+        	echo "<div class ='box'><b>Die Kreditanfrage wurde verschickt!</b><br><br><br><br><br><a href='$url1'>Zurück zur Startseite</a><br><br><br><br><br><a href='$url2'>Meine Anfragen</a></div>"; 
 
         } else {
         	print "Es ist ein Fehler aufgetreten.";        
