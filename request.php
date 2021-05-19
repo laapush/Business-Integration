@@ -57,9 +57,9 @@ if (!isset($_SESSION['vname'])) {
         <label for="term">Kreditlaufzeit:</label>
         <input type="number" id="term" name="term" placeholder="Monate" min="1" max="36" <!--pattern="[1-36]{2} -->"maxlength="2" required>    </input><br>
         <label>Optionen:</label>
-         <div>
+        <!-- <div>
           <label style="font-weight:normal; font-size:small">Nur die niedrigste Rate erhalten<input type="checkbox" id="lowest" name="lowest"></label>
-         </div>
+         </div>-->
          <div><label style="font-weight:normal; font-size:small">E-Mail Benachrichtigung<input type="checkbox" id="notify" name="notify"></label>
         </div>
          <button type="submit"  class="button">Absenden</button>
