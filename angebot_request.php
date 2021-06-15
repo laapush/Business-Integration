@@ -15,10 +15,10 @@ if (!isset($_SESSION['vname'])) {
 error_reporting(0);
 
 // Variablen aus der Request
-$amount = $_POST["amount"];
-$term = $_POST["term"];
-$vorname = $_SESSION["vname"];
-$notify = $_POST["notify"];
+$amount = $_POST["amount"]; //Kredithöhe
+$term = $_POST["term"];     //Kreditlänge
+$vorname = $_SESSION["vname"];  
+$notify = $_POST["notify"]; //Checkbox für E-Mail Benachrichtigung
 
 // REST-Abfrage als zusammengesetzter String
 $abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term . "&arg2=" .getVariableOfDatabase('ssn',$vorname);
@@ -27,12 +27,12 @@ $abfragekredit = "http://localhost:8080/vbank?arg0=" .$amount . "&arg1=" . $term
 $json = file_get_contents($abfragekredit);
 $data = json_decode($json,true);
 
-// Ausgabe der Zinsrate
+// Zinsrate als Variable
 $abfrage = $data['creditrateresponse'];
 
 // Datum
-$datetime = date("Y-m-d H:i:s"); 
-$dateMail = date("d.m.Y H:i");
+$datetime = date("Y-m-d H:i:s"); //für Datenbank
+$dateMail = date("d.m.Y H:i");   //Für Email
 
 // Kreditanfrage in die Datenbank speichern
 $sql = "request (Datum, Kredithöhe, Kreditlänge, Zinssatz) VALUES ('$datetime','$amount','$term','$abfrage')";

@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 						<input type="text" placeholder="Nachname" name="nname" value="<?php echo $nname; ?>" required>
 					</div>
 					<div class="input-group">
-						<input type="ssn" placeholder="SSN: " name="ssn" value="<?php echo $ssn; ?>" required>
+						<input type="ssn" placeholder="SSN " name="ssn" value="<?php echo $ssn; ?>" required>
 					</div>
 					<div class="input-group">
 						<input type="email" placeholder="E-Mail-Adresse" name="email" value="<?php echo $email; ?>" required>
